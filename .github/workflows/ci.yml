@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pip install --no-build-isolation -e .
+      - name: Lint and format
+        run: make quality
+      - name: Unit and service tests
+        run: make test
+      - name: Check pinned dependency consistency
+        run: python -m pip check
+      - name: Verify committed benchmark artifacts
+        run: make verify
+      - name: Smoke test FastAPI over localhost
+        run: |
+          mkdir -p .cache
+          python -c "from PIL import Image; Image.new('RGB', (64, 64), (64, 128, 192)).save('.cache/api-smoke.png')"
+          python -m uvicorn api.main:app --host 127.0.0.1 --port 8765 > .cache/api.log 2>&1 &
+          api_pid=$!
+          trap 'kill "$api_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8765/health > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          api_response=$(curl --fail --silent -F "file=@.cache/api-smoke.png;type=image/png" http://127.0.0.1:8765/predict)
+          python - "$api_response" <<'PY'
+          import json
+          import sys
+
+          payload = json.loads(sys.argv[1])
+          assert len(payload["predictions"]) == 3
+          assert payload["score_type"] == "uncalibrated softmax confidence"
+          PY
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and smoke test Streamlit container
+        run: |
+          docker build -t eurosat-landcover-vision .
+          docker run -d --rm --name eurosat-app -p 8501:8501 eurosat-landcover-vision
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8501/_stcore/health; then
+              docker stop eurosat-app
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs eurosat-app
+          exit 1

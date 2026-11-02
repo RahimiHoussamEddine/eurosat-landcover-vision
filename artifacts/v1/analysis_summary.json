@@ -1,0 +1,235 @@
+{
+  "class_names": [
+    "AnnualCrop",
+    "Forest",
+    "HerbaceousVegetation",
+    "Highway",
+    "Industrial",
+    "Pasture",
+    "PermanentCrop",
+    "Residential",
+    "River",
+    "SeaLake"
+  ],
+  "cnn_test_metrics": {
+    "accuracy": 0.8269135802469135,
+    "accuracy_95_percent_ci_high": 0.8374135802469136,
+    "accuracy_95_percent_ci_low": 0.814932098765432,
+    "balanced_accuracy": 0.821173375109767,
+    "expected_calibration_error_10_bin": 0.09597089247203167,
+    "macro_f1": 0.8199096058681153,
+    "macro_f1_95_percent_ci_high": 0.8310376796492819,
+    "macro_f1_95_percent_ci_low": 0.8072884289832806,
+    "multiclass_brier": 0.26144909858703613,
+    "top3_accuracy": 0.9725925925925926
+  },
+  "cnn_training": {
+    "architecture": "LandCoverCNN small residual CNN trained from scratch",
+    "augmentation": [
+      "horizontal flip",
+      "vertical flip",
+      "90-degree rotations"
+    ],
+    "batch_size": 256,
+    "best_epoch": 4,
+    "best_validation_macro_f1": 0.80589401,
+    "completed_epochs": 5,
+    "label_smoothing": 0.05,
+    "learning_rate": 0.001,
+    "model_config_id": "landcover-cnn-rgb-16-32-64-one-block-v1",
+    "normalization_mean": [
+      0.34502917528152466,
+      0.38067367672920227,
+      0.4079725742340088
+    ],
+    "normalization_std": [
+      0.20256412029266357,
+      0.13683409988880157,
+      0.11559675633907318
+    ],
+    "optimizer": "AdamW",
+    "patience": 2,
+    "requested_epochs": 5,
+    "seed": 20261102,
+    "trainable_parameters": 78042,
+    "weight_decay": 0.0001
+  },
+  "data_archive": {
+    "image_count": 27000,
+    "md5": "f46e308c4d50d4bf32fedad2d3d62f3b",
+    "name": "EuroSAT RGB v2",
+    "sha256": "b4f5b234ecb7d7ff9c6cddb046543b4717c53fd6e9815be6c0e80cc614f51b90",
+    "source_rows": 27000,
+    "url": "https://zenodo.org/records/7711810"
+  },
+  "data_audit": {
+    "class_counts": {
+      "AnnualCrop": 3000,
+      "Forest": 3000,
+      "HerbaceousVegetation": 3000,
+      "Highway": 2500,
+      "Industrial": 2500,
+      "Pasture": 2000,
+      "PermanentCrop": 2500,
+      "Residential": 3000,
+      "River": 2500,
+      "SeaLake": 3000
+    },
+    "class_names": [
+      "AnnualCrop",
+      "Forest",
+      "HerbaceousVegetation",
+      "Highway",
+      "Industrial",
+      "Pasture",
+      "PermanentCrop",
+      "Residential",
+      "River",
+      "SeaLake"
+    ],
+    "corrupt_images": 0,
+    "duplicate_image_copies": 0,
+    "image_count": 27000,
+    "image_dimensions": {
+      "64x64": 27000
+    },
+    "image_dtype": "uint8",
+    "unique_image_hashes": 27000
+  },
+  "geographic_generalization": "not tested; split is stratified and exact-duplicate-group-aware, not spatial",
+  "hog_baseline": {
+    "C": 1.0,
+    "estimator": "LinearSVC",
+    "evaluation_features_shape": [
+      4050,
+      1764
+    ],
+    "feature_extractor": "HOG, 9 orientations, 8x8 pixels per cell, 2x2 cells per block",
+    "max_iter": 8000,
+    "random_state": 20261102,
+    "train_features_shape": [
+      18897,
+      1764
+    ]
+  },
+  "hog_test_metrics": {
+    "accuracy": 0.5762962962962963,
+    "accuracy_95_percent_ci_high": 0.5886419753086419,
+    "accuracy_95_percent_ci_low": 0.5625864197530864,
+    "balanced_accuracy": 0.5600525117561413,
+    "expected_calibration_error_10_bin": null,
+    "macro_f1": 0.5498632078027039,
+    "macro_f1_95_percent_ci_high": 0.5624886563327405,
+    "macro_f1_95_percent_ci_low": 0.5356545661707051,
+    "multiclass_brier": null,
+    "top3_accuracy": 0.8330864197530864
+  },
+  "model_comparison": [
+    {
+      "accuracy": 0.8269135802469135,
+      "accuracy_95_percent_ci_high": 0.8374135802469136,
+      "accuracy_95_percent_ci_low": 0.814932098765432,
+      "balanced_accuracy": 0.821173375109767,
+      "expected_calibration_error_10_bin": 0.09597089247203167,
+      "macro_f1": 0.8199096058681153,
+      "macro_f1_95_percent_ci_high": 0.8310376796492819,
+      "macro_f1_95_percent_ci_low": 0.8072884289832806,
+      "model": "Residual CNN",
+      "multiclass_brier": 0.26144909858703613,
+      "top3_accuracy": 0.9725925925925926
+    },
+    {
+      "accuracy": 0.5762962962962963,
+      "accuracy_95_percent_ci_high": 0.5886419753086419,
+      "accuracy_95_percent_ci_low": 0.5625864197530864,
+      "balanced_accuracy": 0.5600525117561413,
+      "expected_calibration_error_10_bin": null,
+      "macro_f1": 0.5498632078027039,
+      "macro_f1_95_percent_ci_high": 0.5624886563327405,
+      "macro_f1_95_percent_ci_low": 0.5356545661707051,
+      "model": "HOG + linear SVM",
+      "multiclass_brier": null,
+      "top3_accuracy": 0.8330864197530864
+    }
+  ],
+  "normalization_mean": [
+    0.34502917528152466,
+    0.38067367672920227,
+    0.4079725742340088
+  ],
+  "normalization_std": [
+    0.20256412029266357,
+    0.13683409988880157,
+    0.11559675633907318
+  ],
+  "probability_note": "CNN softmax scores are uncalibrated confidence scores; calibration metrics are descriptive.",
+  "project": "EuroSAT Land-Cover Vision",
+  "robustness": [
+    {
+      "accuracy": 0.8269135802469135,
+      "condition": "clean",
+      "macro_f1": 0.8199096058681153,
+      "rows": 4050
+    },
+    {
+      "accuracy": 0.6288888888888889,
+      "condition": "mean_blur_3x3",
+      "macro_f1": 0.584887241434252,
+      "rows": 4050
+    },
+    {
+      "accuracy": 0.6283950617283951,
+      "condition": "brightness_plus_20_percent",
+      "macro_f1": 0.6076620250936942,
+      "rows": 4050
+    }
+  ],
+  "split": {
+    "seed": 20261102,
+    "split_method": "stratified group k-fold with 3/20 outer folds for test and 3/17 development folds for validation; exact duplicate hashes stay together",
+    "test_class_counts": {
+      "AnnualCrop": 449,
+      "Forest": 449,
+      "HerbaceousVegetation": 469,
+      "Highway": 382,
+      "Industrial": 362,
+      "Pasture": 321,
+      "PermanentCrop": 357,
+      "Residential": 404,
+      "River": 402,
+      "SeaLake": 455
+    },
+    "test_rows": 4050,
+    "train_class_counts": {
+      "AnnualCrop": 2109,
+      "Forest": 2073,
+      "HerbaceousVegetation": 2102,
+      "Highway": 1752,
+      "Industrial": 1777,
+      "Pasture": 1380,
+      "PermanentCrop": 1738,
+      "Residential": 2143,
+      "River": 1730,
+      "SeaLake": 2093
+    },
+    "train_rows": 18897,
+    "validation_class_counts": {
+      "AnnualCrop": 442,
+      "Forest": 478,
+      "HerbaceousVegetation": 429,
+      "Highway": 366,
+      "Industrial": 361,
+      "Pasture": 299,
+      "PermanentCrop": 405,
+      "Residential": 453,
+      "River": 368,
+      "SeaLake": 452
+    },
+    "validation_rows": 4053
+  },
+  "test_rows": 4050,
+  "test_score_shape": [
+    4050,
+    10
+  ]
+}

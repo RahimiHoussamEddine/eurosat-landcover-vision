@@ -1,0 +1,43 @@
+{
+  "seed": 20261102,
+  "split_method": "stratified group k-fold with 3/20 outer folds for test and 3/17 development folds for validation; exact duplicate hashes stay together",
+  "test_class_counts": {
+    "AnnualCrop": 449,
+    "Forest": 449,
+    "HerbaceousVegetation": 469,
+    "Highway": 382,
+    "Industrial": 362,
+    "Pasture": 321,
+    "PermanentCrop": 357,
+    "Residential": 404,
+    "River": 402,
+    "SeaLake": 455
+  },
+  "test_rows": 4050,
+  "train_class_counts": {
+    "AnnualCrop": 2109,
+    "Forest": 2073,
+    "HerbaceousVegetation": 2102,
+    "Highway": 1752,
+    "Industrial": 1777,
+    "Pasture": 1380,
+    "PermanentCrop": 1738,
+    "Residential": 2143,
+    "River": 1730,
+    "SeaLake": 2093
+  },
+  "train_rows": 18897,
+  "validation_class_counts": {
+    "AnnualCrop": 442,
+    "Forest": 478,
+    "HerbaceousVegetation": 429,
+    "Highway": 366,
+    "Industrial": 361,
+    "Pasture": 299,
+    "PermanentCrop": 405,
+    "Residential": 453,
+    "River": 368,
+    "SeaLake": 452
+  },
+  "validation_rows": 4053
+}

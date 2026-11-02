@@ -1,0 +1,31 @@
+{
+  "architecture": "LandCoverCNN small residual CNN trained from scratch",
+  "augmentation": [
+    "horizontal flip",
+    "vertical flip",
+    "90-degree rotations"
+  ],
+  "batch_size": 256,
+  "best_epoch": 4,
+  "best_validation_macro_f1": 0.80589401,
+  "completed_epochs": 5,
+  "label_smoothing": 0.05,
+  "learning_rate": 0.001,
+  "model_config_id": "landcover-cnn-rgb-16-32-64-one-block-v1",
+  "normalization_mean": [
+    0.34502917528152466,
+    0.38067367672920227,
+    0.4079725742340088
+  ],
+  "normalization_std": [
+    0.20256412029266357,
+    0.13683409988880157,
+    0.11559675633907318
+  ],
+  "optimizer": "AdamW",
+  "patience": 2,
+  "requested_epochs": 5,
+  "seed": 20261102,
+  "trainable_parameters": 78042,
+  "weight_decay": 0.0001
+}

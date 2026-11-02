@@ -1,0 +1,3 @@
+model,accuracy,balanced_accuracy,macro_f1,top3_accuracy,multiclass_brier,expected_calibration_error_10_bin,accuracy_95_percent_ci_low,accuracy_95_percent_ci_high,macro_f1_95_percent_ci_low,macro_f1_95_percent_ci_high
+Residual CNN,0.82691358,0.82117338,0.81990961,0.97259259,0.26144910,0.09597089,0.81493210,0.83741358,0.80728843,0.83103768
+HOG + linear SVM,0.57629630,0.56005251,0.54986321,0.83308642,,,0.56258642,0.58864198,0.53565457,0.56248866

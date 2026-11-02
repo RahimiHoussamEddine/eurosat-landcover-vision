@@ -1,0 +1,4 @@
+condition,accuracy,macro_f1,rows
+clean,0.82691358,0.81990961,4050
+mean_blur_3x3,0.62888889,0.58488724,4050
+brightness_plus_20_percent,0.62839506,0.60766203,4050
